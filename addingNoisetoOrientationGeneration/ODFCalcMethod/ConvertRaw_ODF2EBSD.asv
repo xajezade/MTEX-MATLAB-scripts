@@ -1,0 +1,8 @@
+LoadOrientations
+fileID = fopen('raw.raw');
+grainID = fread(fileID,[8192 8192],'int32');
+phi1_map=ODF(grainID,1);
+phi_map=ODF(grainID,2);
+phi2_map=ODF(grainID,3);
+x=1:8192;
+xmat=ones(8192,8192).*x;

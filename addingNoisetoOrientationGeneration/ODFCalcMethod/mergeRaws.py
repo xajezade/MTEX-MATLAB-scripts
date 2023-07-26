@@ -1,0 +1,19 @@
+import numpy as np
+data1=np.fromfile('raw1.raw',dtype='int32')
+data2=np.fromfile('raw2.raw',dtype='int32')
+data3=np.fromfile('raw3.raw',dtype='int32')
+data4=np.fromfile('raw4.raw',dtype='int32')
+maxnum1=np.amax(data1)
+maxnum2=maxnum1+np.amax(data2)
+maxnum3=maxnum2+np.amax(data3)
+data2=data2+maxnum1
+data3=data3+maxnum2
+data4=data4+maxnum3
+data1=np.reshape(data1,(4096,4096))
+data2=np.reshape(data2,(4096,4096))
+data3=np.reshape(data3,(4096,4096))
+data4=np.reshape(data4,(4096,4096))
+data12=np.concatenate((data1,data2),axis=1)
+data34=np.concatenate((data3,data4),axis=1)
+final=np.concatenate((data12,data34),axis=0)
+final.astype('int32').tofile('raw.raw')
